@@ -3,6 +3,7 @@ package com.nicefootball.football_api.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class Team {
     private Double budget;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "team", orphanRemoval = true)
-    private List<Player> players;
+    private List<Player> players = new ArrayList<>();
 
     // Getters, setters
 

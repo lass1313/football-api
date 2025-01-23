@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/football")
+@RequestMapping("/api/football/")
 public class TeamController {
     private static final Logger logger = LoggerFactory.getLogger(TeamController.class);
 
@@ -52,7 +52,7 @@ public class TeamController {
      * @return l'équipe ajoutée sous forme de ResponseEntity contenant TeamDTO
      */
     @PostMapping("/teams")
-    public ResponseEntity<TeamDTO> addTeam(@Valid @RequestBody TeamDTO teamDto) {
+    public ResponseEntity<?> addTeam(@Valid @RequestBody TeamDTO teamDto) {
         logger.info("Ajout d'une nouvelle équipe : {}", teamDto.getName());
         try {
             TeamDTO createdTeam = teamService.addTeam(teamDto);
@@ -60,7 +60,7 @@ public class TeamController {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdTeam);
         }catch (Exception e){
             logger.error("Erreur lors de l'ajout de l'équipe : {}", teamDto.getName(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'ajout de l'équipe: " + e.getMessage());
         }
     }
 

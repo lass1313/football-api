@@ -8,5 +8,5 @@
 ## Installation
 
 ### Cloner le dépôt
-git clone https://github.com/votre-utilisateur/football-api.git
+git clone  https://github.com/lass1313/football-api.git
 cd football-api
